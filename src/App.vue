@@ -1,14 +1,23 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Hello Vue 3 in CodeSandbox!" />
+  <h1>HELLO {{ name }}</h1>
+  <div v-html="channel"></div>
+  <div v-html="hack"></div>
+  <div v-bind:id="headingId">Heading</div>
+  <button v-bind:id="headingId">Button</button>
 </template>
 
 <script>
-import HelloWorldVue from "./components/HelloWorld.vue";
 export default {
   name: "App",
-  components: {
-    HelloWorld: HelloWorldVue,
+  components: {},
+  data() {
+    return {
+      name: "PANDULA DAN",
+      channel: "<b>Mastach</b>",
+      hack: `<a href='#' onclick="alert('You Have Been HAcked')">CLIKC<a/>`,
+      headingId: "heading",
+      isDisabled: true,
+    };
   },
 };
 </script>
