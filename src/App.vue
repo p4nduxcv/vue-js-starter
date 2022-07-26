@@ -1,34 +1,31 @@
 <template>
-  <!-- <h1>HELLO {{ name }}</h1>
-  <div v-html="channel"></div>
-  <div v-html="hack"></div>
-  <div v-bind:id="headingId">Heading</div>
-  <button v-bind:id="headingId">Button</button>
-  <h1 v-if="num == 0">Number Is ZERO</h1>
-  <h1 v-if="num > 0">Number Is POssitive</h1>
-  <h1 v-if="num < 0">Number Is Negative</h1>
-  <h1 v-else>Number Is Not ZERO</h1>
+  <h1>HELLO {{ formValues.name }}</h1>
+  <h3>Country = {{ formValues.country }}</h3>
+  <h4>Remote Work = {{ formValues.remoteWork }}</h4>
 
-  <h2 v-show="isShow">RA</h2> -->
-  <!-- <div v-show="isShow">
-    <ul v-for="name in namesArr" :key="name">
-      <li>{{ name }}</li>
-    </ul>
-  </div>
+  <form @submit="submitForm">
+    <div>
+      <label for="name">Name</label>
+      <input type="text" id="name" v-model="formValues.name" />
+    </div>
 
-  <div v-for="actor in actors" :key="actor.name" v-show="true">
-    <h2>{{ actor.name }}</h2>
-    <h4 v-for="movie in actor.movies" :key="movie">{{ movie }}</h4>
-  </div> -->
+    <div>
+      <label for="country">Country</label>
+      <select multiple id="country" v-model="formValues.country">
+        <option value="">Select a Value</option>
+        <option value="india">India</option>
+        <option value="srilanka">Sri Lanka</option>
+      </select>
+    </div>
 
-  <h2>Add Method = {{ add(2, 3, 4) }}</h2>
-  <h3>Add Method = {{ multi(4) }}</h3>
-
-  <h1>{{ name }}</h1>
-  <div><button v-on:click="changeName">Change name</button></div>
-
-  <h1>{{ count }}</h1>
-  <div><button v-on:click="incre">Increment Count</button></div>
+    <div>
+      <label for="remoteWork">WFH Available for 0530 GMT</label>
+      <input type="checkbox" id="remoteWork" v-model="formValues.remoteWork" />
+    </div>
+    <div>
+      <button>Submit</button>
+    </div>
+  </form>
 </template>
 
 <script>
@@ -37,35 +34,17 @@ export default {
   components: {},
   data() {
     return {
-      name: "PANDULA DAN",
-      channel: "<b>Mastach</b>",
-      hack: `<a href='#' onclick="alert('You Have Been HAcked')">CLIKC<a/>`,
-      headingId: "heading",
-      isDisabled: true,
-      num: 4,
-      isShow: false,
-      namesArr: ["Pa", "ND", "UL", "A"],
-      actors: [
-        { name: "Nimal", movies: ["XXX, ZZZ, YYY"] },
-        { name: "Nimal-Pa", movies: ["XEX, ZEZ, YEY"] },
-      ],
-      baseMultiplier: 5,
-      count: 1,
+      formValues: {
+        name: "Pandu",
+        country: [],
+        remoteWork: false,
+      },
     };
   },
   methods: {
-    add(a, b, c) {
-      return a + b + c;
-    },
-    multi(num) {
-      return num * this.baseMultiplier;
-    },
-    incre() {
-      return this.count++;
-    },
-    changeName(event) {
+    submitForm(event) {
+      event.preventDefault();
       console.log(event);
-      return (this.name = "Kyle");
     },
   },
 };
@@ -76,8 +55,44 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  /* text-align: center; */
   color: #2c3e50;
   margin-top: 60px;
+}
+.underline {
+  text-decoration: underline;
+}
+.promoted {
+  font-style: italic;
+}
+.new {
+  color: olivedrab;
+}
+.sold-out {
+  color: red;
+}
+label {
+  font-weight: bold;
+  display: flex;
+  margin-bottom: 5px;
+}
+input + label {
+  font-weight: bold;
+  display: inline-flex;
+  margin-right: 20px;
+}
+input[type="text"],
+textarea,
+select {
+  display: block;
+  width: 400px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 </style>
