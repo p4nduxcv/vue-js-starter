@@ -10,7 +10,7 @@
   <h1 v-else>Number Is Not ZERO</h1>
 
   <h2 v-show="isShow">RA</h2> -->
-  <div v-show="isShow">
+  <!-- <div v-show="isShow">
     <ul v-for="name in namesArr" :key="name">
       <li>{{ name }}</li>
     </ul>
@@ -19,7 +19,10 @@
   <div v-for="actor in actors" :key="actor.name" v-show="true">
     <h2>{{ actor.name }}</h2>
     <h4 v-for="movie in actor.movies" :key="movie">{{ movie }}</h4>
-  </div>
+  </div> -->
+
+  <h2>Add Method = {{ add(2, 3, 4) }}</h2>
+  <h3>Add Method = {{ multi(4) }}</h3>
 </template>
 
 <script>
@@ -40,7 +43,16 @@ export default {
         { name: "Nimal", movies: ["XXX, ZZZ, YYY"] },
         { name: "Nimal-Pa", movies: ["XEX, ZEZ, YEY"] },
       ],
+      baseMultiplier: 5,
     };
+  },
+  methods: {
+    add(a, b, c) {
+      return a + b + c;
+    },
+    multi(num) {
+      return num * this.baseMultiplier;
+    },
   },
 };
 </script>
