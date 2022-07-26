@@ -23,6 +23,12 @@
 
   <h2>Add Method = {{ add(2, 3, 4) }}</h2>
   <h3>Add Method = {{ multi(4) }}</h3>
+
+  <h1>{{ name }}</h1>
+  <div><button v-on:click="changeName">Change name</button></div>
+
+  <h1>{{ count }}</h1>
+  <div><button v-on:click="incre">Increment Count</button></div>
 </template>
 
 <script>
@@ -44,6 +50,7 @@ export default {
         { name: "Nimal-Pa", movies: ["XEX, ZEZ, YEY"] },
       ],
       baseMultiplier: 5,
+      count: 1,
     };
   },
   methods: {
@@ -52,6 +59,13 @@ export default {
     },
     multi(num) {
       return num * this.baseMultiplier;
+    },
+    incre() {
+      return this.count++;
+    },
+    changeName(event) {
+      console.log(event);
+      return (this.name = "Kyle");
     },
   },
 };
