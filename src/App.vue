@@ -20,8 +20,14 @@
 
     <div>
       <label for="remoteWork">WFH Available for 0530 GMT</label>
-      <input type="checkbox" id="remoteWork" v-model="formValues.remoteWork" />
+      <input type="checkbox" id="remoteWork" v-model="formValues.name" />
     </div>
+
+    <div>
+      <label for="age">Age</label>
+      <input type="text" id="age" v-model.number="formValues.age" />
+    </div>
+
     <div>
       <button>Submit</button>
     </div>
@@ -38,6 +44,7 @@ export default {
         name: "Pandu",
         country: [],
         remoteWork: false,
+        age: null,
       },
     };
   },
