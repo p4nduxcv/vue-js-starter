@@ -1,37 +1,8 @@
 <template>
-  <h1>HELLO {{ formValues.name }}</h1>
-  <h3>Country = {{ formValues.country }}</h3>
-  <h4>Remote Work = {{ formValues.remoteWork }}</h4>
-
-  <form @submit="submitForm">
-    <div>
-      <label for="name">Name</label>
-      <input type="text" id="name" v-model="formValues.name" />
-    </div>
-
-    <div>
-      <label for="country">Country</label>
-      <select multiple id="country" v-model="formValues.country">
-        <option value="">Select a Value</option>
-        <option value="india">India</option>
-        <option value="srilanka">Sri Lanka</option>
-      </select>
-    </div>
-
-    <div>
-      <label for="remoteWork">WFH Available for 0530 GMT</label>
-      <input type="checkbox" id="remoteWork" v-model="formValues.name" />
-    </div>
-
-    <div>
-      <label for="age">Age</label>
-      <input type="text" id="age" v-model.number="formValues.age" />
-    </div>
-
-    <div>
-      <button>Submit</button>
-    </div>
-  </form>
+  <h1>
+    Total of All Cars =
+    {{ tot }}
+  </h1>
 </template>
 
 <script>
@@ -40,18 +11,21 @@ export default {
   components: {},
   data() {
     return {
-      formValues: {
-        name: "Pandu",
-        country: [],
-        remoteWork: false,
-        age: null,
-      },
+      cars: [
+        { id: 1, model: "Toyota", price: 800 },
+        { id: 2, model: "Suzuki", price: 9000 },
+      ],
     };
   },
   methods: {
     submitForm(event) {
       event.preventDefault();
       console.log(event);
+    },
+  },
+  computed: {
+    tot() {
+      return this.cars.reduce((acc, curr) => (acc = acc + curr.price), 0);
     },
   },
 };
