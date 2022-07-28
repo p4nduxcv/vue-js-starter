@@ -1,8 +1,11 @@
 <template>
-  <h1>
-    Total of All Cars =
-    {{ tot }}
-  </h1>
+  <h1>Volume Tracker - {{ volume }}</h1>
+  <button @click="volume += 2">+</button>
+  <button @click="volume -= 2">-</button>
+
+  <input type="text" v-model="movie" />
+  <input type="text" v-model="movieInfo.title" />
+  <input type="text" v-model="movieInfo.actor" />
 </template>
 
 <script>
@@ -11,10 +14,12 @@ export default {
   components: {},
   data() {
     return {
-      cars: [
-        { id: 1, model: "Toyota", price: 800 },
-        { id: 2, model: "Suzuki", price: 9000 },
-      ],
+      volume: 0,
+      movie: "GIO",
+      movieInfo: {
+        title: "A",
+        actor: "E",
+      },
     };
   },
   methods: {
@@ -26,6 +31,25 @@ export default {
   computed: {
     tot() {
       return this.cars.reduce((acc, curr) => (acc = acc + curr.price), 0);
+    },
+  },
+  watch: {
+    volume(newVal, oldVal) {
+      if (newVal > oldVal && newVal === 16) {
+        alert("Kana Palei Whotto!");
+      }
+    },
+    movie: {
+      handler(newVal) {
+        console.log(`Calling API with movie Name = ${newVal}`);
+      },
+      immediate: true,
+    },
+    movieInfo: {
+      handler(newVal) {
+        console.log(`Calling API with movie Info = ${newVal.title} and`);
+      },
+      deep: true,
     },
   },
 };
